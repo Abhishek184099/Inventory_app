@@ -1,0 +1,25 @@
+enum InventoryChangeType {
+  ORDER_PLACED
+  ORDER_CANCELLED
+  RESTOCK
+  MANUAL_ADJUSTMENT
+}
+
+
+model InventoryLog {
+  id            String              @id @default(uuid())
+  productId     String
+  orderId       String?
+  changeType    InventoryChangeType
+  quantityDelta Int                 
+  previousStock Int
+  newStock      Int
+  createdAt     DateTime            @default(now())
+
+  product Product @relation(fields: [productId], references: [id])
+  order   Order?  @relation(fields: [orderId], references: [id])
+
+  @@index([productId])
+  @@index([orderId])
+  @@map("inventory_logs")
+}

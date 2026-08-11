@@ -136,7 +136,7 @@ docker compose exec app npx tsx scripts/load-test.ts"
 ### Setup
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/Abhishek184099/Inventory_app
 cd backend
 cp .env.example .env
 ```
